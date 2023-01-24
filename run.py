@@ -40,23 +40,23 @@ def connect_training():
     """
     if get_age <= 20:
         teenager = SHEET.worksheet('teenager')
-        print(You got the teenager program)
+        print('You are in the teenager program')
 
     elif get_age <= 35: 
          adult = SHEET.worksheet('adult')
-         print(You got the adult program)
+         print('You are in the adult program')
 
     elif get_age <= 50:
         mid_life = SHEET.worksheet('mid_life')
-        print(You got the mid_life program)
+        print('You are in the mid_life program')
 
     elif get_age <= 70:
         elder = SHEET.worksheet('elder')
-        print(You got the elder program)
+        print('You are in the elder program')
 
     else:
         senior = SHEET.worksheet('senior')
-        print(You got the senior program)
+        print('You are in the senior program')
 
 def get_result():
     """
@@ -67,14 +67,19 @@ def get_result():
     data_str = input("Enter your data here: ")
     print(f"The data provided is {data_str}")
     
-    if Yes:
-        
-def main():
-    """
-    Run all functions
-    """
-get_age()
-validate_age()
-connect_training()
-get_result()
-main()
+    if data_str != Yes:
+        print('Workout will be tougher tomorrow')
+        #Write code for specific age to get added by 10%
+
+        else:
+            print('The workout for tomorrow will be the same')
+
+# def main():
+#     """
+#     Run all functions
+#     """
+# get_age()
+# validate_age()
+# connect_training()
+# get_result()
+# main()
