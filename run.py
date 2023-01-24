@@ -12,45 +12,50 @@ SCOPED_CREDS = CREDS.with_scopes(SCOPE)
 GSPREAD_CLIENT = gspread.authorize(SCOPED_CREDS)
 SHEET = GSPREAD_CLIENT.open('workout_plan')
 
+user_age = 0
+
 def get_age():
     """
     Get age from user to give them the right training.
     """
     print("Please enter your age in numbers.")
 
-    data_str = input("Enter your data here: ")
-    print(f"The data provided is {data_str}")
-    validate_age(get_age)
+   # data_str = input("Enter your data here: ")
+   # print(f"The data provided is {data_str}")
+    validate_age()
 
-def validate_age(value):
+def validate_age():
     """
     Inside the try, convert user answer to integers. Create ValueError if age isn't written in numbers.
     """
-    try:
-        if len(value) != 1:
-            raise ValueError(
-                f"Only one value is required not {len(value)}"
-            )
-    except ValueError as e:
-        print(f"Invalid data: {e}, please try again.\n")
+
+    while True:
+      global user_age
+      user_age = input("\nYour answer: ")
+      try:
+        val = float(user_age)
+        break
+      except ValueError:
+        print("That's not a number!")
 
 def connect_training():
     """
     A function to connect user age to the right training program
     """
-    if get_age <= 20:
+    parsed_age = int(user_age)
+    if parsed_age <= 20:
         teenager = SHEET.worksheet('teenager')
         print('You are in the teenager program')
 
-    elif get_age <= 35: 
+    elif parsed_age <= 35: 
          adult = SHEET.worksheet('adult')
          print('You are in the adult program')
 
-    elif get_age <= 50:
+    elif parsed_age <= 50:
         mid_life = SHEET.worksheet('mid_life')
         print('You are in the mid_life program')
 
-    elif get_age <= 70:
+    elif parsed_age <= 70:
         elder = SHEET.worksheet('elder')
         print('You are in the elder program')
 
@@ -66,13 +71,12 @@ def get_result():
 
     data_str = input("Enter your data here: ")
     print(f"The data provided is {data_str}")
-    
-    if data_str != Yes:
-        print(f'Since you answered {}, workout will be tougher tomorrow')
+    converted_ans = data_str.lower()
+    if converted_ans == "yes":
+        print(f'Since you answered {converted_ans}, workout will be tougher tomorrow')
         #Write code for specific age to get added by 10%
-
-        else:
-            print(f'Since you answered {}, the workout for tomorrow will be the same')
+    else:
+        print(f'Since you answered {converted_ans}, the workout for tomorrow will be the same')
 
 def update_worksheet(data, worksheet):
     """
@@ -83,13 +87,13 @@ def update_worksheet(data, worksheet):
     worksheet_to_update.append_row(data)
     print(f"{worksheet} worksheet updated successfully\n")
 
+get_age()
+connect_training()
+get_result()
 
 # def main():
 #     """
 #     Run all functions
 #     """
-# get_age()
-# validate_age()
-# connect_training()
-# get_result()
+
 # main()
