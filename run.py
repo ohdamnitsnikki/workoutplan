@@ -35,16 +35,46 @@ def validate_age(value):
         print(f"Invalid data: {e}, please try again.\n")
 
 def connect_training():
+    """
+    A function to connect user age to the right training program
+    """
     if get_age <= 20:
         teenager = SHEET.worksheet('teenager')
+        print(You got the teenager program)
+
     elif get_age <= 35: 
          adult = SHEET.worksheet('adult')
+         print(You got the adult program)
+
     elif get_age <= 50:
         mid_life = SHEET.worksheet('mid_life')
+        print(You got the mid_life program)
+
     elif get_age <= 70:
         elder = SHEET.worksheet('elder')
+        print(You got the elder program)
+
     else:
         senior = SHEET.worksheet('senior')
+        print(You got the senior program)
 
+def get_result():
+    """
+    Ask user if the workout was easy to know if for tomorrow it will be increased by 10% or not.
+    """
+    print("Was todays workout easy? Answer Yes or No")
 
+    data_str = input("Enter your data here: ")
+    print(f"The data provided is {data_str}")
+    
+    if Yes:
+        
+def main():
+    """
+    Run all functions
+    """
 get_age()
+validate_age()
+connect_training()
+get_result()
+main()
