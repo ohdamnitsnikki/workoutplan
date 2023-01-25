@@ -46,22 +46,32 @@ def connect_training():
     if parsed_age <= 20:
         teenager = SHEET.worksheet('teenager')
         print('You are in the teenager program')
+        data = teenager.get_all_values()
+        print(data)
 
     elif parsed_age <= 35: 
          adult = SHEET.worksheet('adult')
          print('You are in the adult program')
+         data = adult.get_all_values()
+         print(data)
 
     elif parsed_age <= 50:
         mid_life = SHEET.worksheet('mid_life')
         print('You are in the mid_life program')
+        data = mid_life.get_all_values()
+        print(data)
 
     elif parsed_age <= 70:
         elder = SHEET.worksheet('elder')
         print('You are in the elder program')
+        data = elder.get_all_values()
+        print(data)
 
     else:
         senior = SHEET.worksheet('senior')
         print('You are in the senior program')
+        data = senior.get_all_values()
+        print(data)
 
 def get_result():
     """
