@@ -36,7 +36,7 @@ def validate_age():
         val = float(user_age)
         break
       except ValueError:
-        print("That's not a number!")
+        print("That's not a age in numbers!")
 
 def connect_training():
     """
@@ -77,16 +77,22 @@ def get_result():
     """
     Ask user if the workout was easy to know if for tomorrow it will be increased by 10% or not.
     """
-    print("Was todays workout easy? Answer Yes or No")
+    print("Was todays workout easy? If so answer Yes")
+   
 
     data_str = input("Enter your data here: ")
     print(f"The data provided is {data_str}")
     converted_ans = data_str.lower()
     if converted_ans == "yes":
         print(f'Since you answered {converted_ans}, workout will be tougher tomorrow')
-        #Write code for specific age to get added by 10%
+        int(data) * 1.1
+        print(data)
+        
+        
     else:
         print(f'Since you answered {converted_ans}, the workout for tomorrow will be the same')
+
+
 
 def update_worksheet(data, worksheet):
     """
@@ -97,13 +103,7 @@ def update_worksheet(data, worksheet):
     worksheet_to_update.append_row(data)
     print(f"{worksheet} worksheet updated successfully\n")
 
+
 get_age()
 connect_training()
 get_result()
-
-# def main():
-#     """
-#     Run all functions
-#     """
-
-# main()
