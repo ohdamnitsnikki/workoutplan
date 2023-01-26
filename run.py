@@ -21,10 +21,6 @@ def get_age():
     """
     print("Please enter your age in numbers.")
 
-   # data_str = input("Enter your data here: ")
-   # print(f"The data provided is {data_str}")
-    validate_age()
-
 def validate_age():
     """
     Inside the try, convert user answer to integers. Create ValueError if age isn't written in numbers.
@@ -46,7 +42,6 @@ def connect_training():
     parsed_age = int(user_age)
     global users_age_group
     if parsed_age <= 20:
-        
         users_age_group = 'teenager'
         teenager = SHEET.worksheet('teenager')
         print('You are in the teenager program')
@@ -106,7 +101,15 @@ def update_worksheet():
     """
 
     print(users_age_group)
-    SHEET.worksheet(users_age_group)
+    
+    
+    sheet = SHEET.worksheet(users_age_group)
+    data = sheet.get_all_values()
+    print(data)
+
+            
+
+
 
     # print(worksheet)
     # print(f"Updating {worksheet} tomorrows training program...\n")
@@ -116,6 +119,7 @@ def update_worksheet():
 
 
 get_age()
+validate_age()
 connect_training()
 get_result()
 update_worksheet()
