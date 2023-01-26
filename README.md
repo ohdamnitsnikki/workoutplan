@@ -1,14 +1,13 @@
-![CI logo](https://codeinstitute.s3.amazonaws.com/fullstack/ci_logo_small.png)
+# Workoutplan
 
-Welcome ohdamnitsnikki,
+Workoutplan is a platform for people in all ages that needs help to get into training. The exercises are few, which gives anyone time to take on this challenge. 
 
-This is the Code Institute student template for deploying your third portfolio project, the Python command-line project. The last update to this file was: **August 17, 2021**
+## How does it work?
 
-## Reminders
-
-* Your code must be placed in the `run.py` file
-* Your dependencies must be placed in the `requirements.txt` file
-* Do not edit any of the other files or your code may not deploy properly
+* The user get asked about their age and gets to fill it in.
+* Depending on the users age a training program if shown with exercises and how many times the user should do them.
+* The user then gets asked if the workout was easy.
+* Incase the workout was easy it will be increased by 10% for the next day and if it wasn't it will stay the same
 
 ## Creating the Heroku app
 

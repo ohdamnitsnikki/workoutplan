@@ -13,6 +13,7 @@ GSPREAD_CLIENT = gspread.authorize(SCOPED_CREDS)
 SHEET = GSPREAD_CLIENT.open('workout_plan')
 
 user_age = 0
+users_age_group = None
 
 def get_age():
     """
@@ -44,30 +45,40 @@ def connect_training():
     """
     parsed_age = int(user_age)
     if parsed_age <= 20:
+        global users_age_group
+        users_age_group = 'teenager'
         teenager = SHEET.worksheet('teenager')
         print('You are in the teenager program')
         data = teenager.get_all_values()
         print(data)
 
     elif parsed_age <= 35: 
+        global users_age_group
+        users_age_group = 'adult'
          adult = SHEET.worksheet('adult')
          print('You are in the adult program')
          data = adult.get_all_values()
          print(data)
 
     elif parsed_age <= 50:
+        global users_age_group
+        users_age_group = 'mid_life'
         mid_life = SHEET.worksheet('mid_life')
         print('You are in the mid_life program')
         data = mid_life.get_all_values()
         print(data)
 
     elif parsed_age <= 70:
+        global users_age_group
+        users_age_group = 'elder'
         elder = SHEET.worksheet('elder')
         print('You are in the elder program')
         data = elder.get_all_values()
         print(data)
 
     else:
+        global users_age_group
+        users_age_group = 'senior'
         senior = SHEET.worksheet('senior')
         print('You are in the senior program')
         data = senior.get_all_values()
@@ -81,29 +92,32 @@ def get_result():
    
 
     data_str = input("Enter your data here: ")
-    print(f"The data provided is {data_str}")
     converted_ans = data_str.lower()
     if converted_ans == "yes":
         print(f'Since you answered {converted_ans}, workout will be tougher tomorrow')
-        int(data) * 1.1
-        print(data)
-        
-        
+       
+    
     else:
         print(f'Since you answered {converted_ans}, the workout for tomorrow will be the same')
 
 
 
-def update_worksheet(data, worksheet):
+def update_worksheet():
     """
     Update tomorrows training program to the worksheet.
     """
-    print(f"Updating {worksheet} tomorrows training program...\n")
-    worksheet_to_update = SHEET.worksheet(worksheet)
-    worksheet_to_update.append_row(data)
-    print(f"{worksheet} worksheet updated successfully\n")
+
+    print(users_age_group)
+    SHEET.worksheet(users_age_group)
+
+    # print(worksheet)
+    # print(f"Updating {worksheet} tomorrows training program...\n")
+    # worksheet_to_update = SHEET.worksheet(worksheet)
+    # worksheet_to_update.append_row(data)
+    # print(f"{worksheet} worksheet updated successfully\n")
 
 
 get_age()
 connect_training()
 get_result()
+update_worksheet()
