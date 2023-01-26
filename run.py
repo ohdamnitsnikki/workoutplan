@@ -101,21 +101,14 @@ def update_worksheet():
     """
 
     print(users_age_group)
-    
-    
+        
     sheet = SHEET.worksheet(users_age_group)
-    data = sheet.get_all_values()
+    data = sheet.get_all_values()[-1]
     print(data)
 
-            
-
-
-
-    # print(worksheet)
-    # print(f"Updating {worksheet} tomorrows training program...\n")
-    # worksheet_to_update = SHEET.worksheet(worksheet)
-    # worksheet_to_update.append_row(data)
-    # print(f"{worksheet} worksheet updated successfully\n")
+    # data = ['15', '20', '12', '15', '12', '10']
+    # for x in data:
+    # print(x)
 
 
 get_age()
