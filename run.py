@@ -44,8 +44,9 @@ def connect_training():
     A function to connect user age to the right training program
     """
     parsed_age = int(user_age)
+    global users_age_group
     if parsed_age <= 20:
-        global users_age_group
+        
         users_age_group = 'teenager'
         teenager = SHEET.worksheet('teenager')
         print('You are in the teenager program')
