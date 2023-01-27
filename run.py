@@ -37,7 +37,10 @@ def validate_age():
         print("That's not a age in numbers!")
 
 def read_sheet(list_headers , list_numbers):
-    
+    """
+    Use a while loop to read out each exercise and then how many times it should been done instead of first reading the headers and then the last row.
+    """
+
     i = 0
     while i < len(list_headers)-1:
         print(str(list_headers[i]) + ": " + str(list_numbers[i]))
@@ -59,8 +62,6 @@ def connect_training():
         list_numbers = data[-1]
         read_sheet(list_headers, list_numbers)
         
-
-
 
     elif parsed_age <= 35: 
         users_age_group = 'adult'
@@ -120,7 +121,7 @@ def get_result():
 
 def update_worksheet():
     """
-    Update tomorrows training program to the worksheet.
+    Update tomorrows training program to worksheet if it was easy for the user.
     """
 
     print(users_age_group)
