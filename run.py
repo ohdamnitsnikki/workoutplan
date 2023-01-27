@@ -69,7 +69,7 @@ def connect_training():
         users_age_group = 'teenager'
         teenager = SHEET.worksheet('teenager')
         print('\nYou are in the teenager program.')
-        print('This is your training for today! Do them all four times!\n')
+        print('\nThis is your training for today! Do them all four times!\n')
         data = teenager.get_all_values()
         list_headers = data[0]
         list_numbers = data[-1]
@@ -79,7 +79,7 @@ def connect_training():
         users_age_group = 'adult'
         adult = SHEET.worksheet('adult')
         print('\nYou are in the adult program.')
-        print('This is your training for today! Do them all four times!\n')
+        print('\nThis is your training for today! Do them all four times!\n')
         data = adult.get_all_values()
         list_headers = data[0]
         list_numbers = data[-1]
@@ -89,7 +89,7 @@ def connect_training():
         users_age_group = 'mid_life'
         mid_life = SHEET.worksheet('mid_life')
         print('\nYou are in the mid_life program.')
-        print('This is your training for today! Do them all four times!\n')
+        print('\nThis is your training for today! Do them all four times!\n')
         data = mid_life.get_all_values()
         list_headers = data[0]
         list_numbers = data[-1]
@@ -100,7 +100,7 @@ def connect_training():
         users_age_group = 'elder'
         elder = SHEET.worksheet('elder')
         print('\nYou are in the elder program.')
-        print('This is your training for today! Do them all four times!\n')
+        print('\nThis is your training for today! Do them all four times!\n')
         data = elder.get_all_values()
         list_headers = data[0]
         list_numbers = data[-1]
@@ -110,7 +110,7 @@ def connect_training():
         users_age_group = 'senior'
         senior = SHEET.worksheet('senior')
         print('\nYou are in the senior program.')
-        print('This is your training for today! Do them all four times!\n')
+        print('\nThis is your training for today! Do them all four times!\n')
         data = senior.get_all_values()
         list_headers = data[0]
         list_numbers = data[-1]
@@ -176,7 +176,7 @@ def update_worksheet():
         new_values.append(str(num))
 
     sheet.append_row(new_values)
-    print('\nThis is your exercises for tomorrow\n')
+    print('This is your exercises for tomorrow\n')
     print(new_values)
 
 
