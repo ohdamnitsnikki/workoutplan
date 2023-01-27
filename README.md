@@ -75,6 +75,7 @@ Refresh teh page and a link to the final project is deployed.
 
 ## Creating a app on Heroku
 
+(This next part isn't described by me)
 This app is deployed on Heroku.
 
 When you create the app, you will need to add two buildpacks from the _Settings_ tab. The ordering is as follows:
@@ -88,9 +89,10 @@ If you have credentials, such as in the Love Sandwiches project, you must create
 
 Connect your GitHub repository and deploy as normal.
 
-## Constraints
 
-The deployment terminal is set to 80 columns by 24 rows. That means that each line of text needs to be 80 characters or less otherwise it will be wrapped onto a second line.
 
------
-Happy coding!
+## Credits
+
+All coding for this application is written by me. I've taken help from mentors and [Stack Overflow](https://stackoverflow.com/).
+
+The repositry is taken from AJ Greaves the teacher.

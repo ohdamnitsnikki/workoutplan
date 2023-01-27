@@ -17,6 +17,13 @@ user_age = 0
 users_age_group = None
 
 
+def start_game():
+    print("\n\n============= WELCOME TO YOUR WORKOUT PLAN ===========")
+    print("\nThis app is created to help you get stronger and healthier!\n")
+    print("===================== Yoy will be handed a program depending on your age. =====================\n\n")
+    print("===================== The older you are, the easier it will start out. =====================\n\n")
+
+
 def get_age():
     """
     Get age from user to give them the right training.
@@ -109,24 +116,39 @@ def connect_training():
         list_numbers = data[-1]
         read_sheet(list_headers, list_numbers)
 
+def validate_result():
+
+    while True:
+        global data_str
+        data_str = input("Enter your data here: ").lower()
+
+        try:
+        
+            converted_ans = data_str.lower()
+            if converted_ans == "yes":
+                print(f'You answered {converted_ans}')
+                print('Your workout will be tougher tomorrow\n')
+                update_worksheet()
+
+            elif converted_ans == "no":
+                print(f'You answered {converted_ans}\n')
+                print('Your workout for tomorrow will be the same')
+            else: 
+                raise Exception("Invalid input! Answer Must Be 'Yes' or 'No'")
+                   
+        except Exception as e:
+            print(e)
+        
+        else:
+            break
 
 def get_result():
     """
     Ask user if the workout was easy to know if for tomorrow
      it will be increased by 10% or not.
     """
-    print("Was todays workout easy? If so answer Yes")
-
-    data_str = input("Enter your data here: ")
-    converted_ans = data_str.lower()
-    if converted_ans == "yes":
-        print(f'You answered {converted_ans}')
-        print('Your workout will be tougher tomorrow\n')
-        update_worksheet()
-
-    else:
-        print(f'You answered {converted_ans}\n')
-        print('Your workout for tomorrow will be the same')
+    print("\n Was todays workout easy? If so answer Yes")
+    validate_result()
 
 
 def update_worksheet():
@@ -144,8 +166,10 @@ def update_worksheet():
         new_values.append(str(num))
 
     sheet.append_row(new_values)
+    print(new_values)
 
 
+start_game()
 get_age()
 validate_age()
 connect_training()
