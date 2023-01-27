@@ -37,6 +37,7 @@ def validate_age():
         print("That's not a age in numbers!")
 
 def read_sheet(list_headers , list_numbers):
+    
     i = 0
     while i < len(list_headers)-1:
         print(str(list_headers[i]) + ": " + str(list_numbers[i]))
