@@ -20,8 +20,8 @@ users_age_group = None
 def start_game():
     print("\n\n============= WELCOME TO YOUR WORKOUT PLAN ===========")
     print("\nThis app is created to help you get stronger and healthier!\n")
-    print("===================== Yoy will be handed a program depending on your age. =====================\n\n")
-    print("===================== The older you are, the easier it will start out. =====================\n\n")
+    print("==== You will be handed a program depending on your age. ====\n")
+    print("====== The older you are, the easier it will start out. ======\n")
 
 
 def get_age():
@@ -68,8 +68,8 @@ def connect_training():
     if parsed_age <= 20:
         users_age_group = 'teenager'
         teenager = SHEET.worksheet('teenager')
-        print('You are in the teenager program.')
-        print('This is your training for today! Do them all four times!')
+        print('\nYou are in the teenager program.')
+        print('This is your training for today! Do them all four times!\n')
         data = teenager.get_all_values()
         list_headers = data[0]
         list_numbers = data[-1]
@@ -78,8 +78,8 @@ def connect_training():
     elif parsed_age <= 35:
         users_age_group = 'adult'
         adult = SHEET.worksheet('adult')
-        print('You are in the adult program.')
-        print('This is your training for today! Do them all four times!')
+        print('\nYou are in the adult program.')
+        print('This is your training for today! Do them all four times!\n')
         data = adult.get_all_values()
         list_headers = data[0]
         list_numbers = data[-1]
@@ -88,8 +88,8 @@ def connect_training():
     elif parsed_age <= 50:
         users_age_group = 'mid_life'
         mid_life = SHEET.worksheet('mid_life')
-        print('You are in the mid_life program.')
-        print('This is your training for today! Do them all four times!')
+        print('\nYou are in the mid_life program.')
+        print('This is your training for today! Do them all four times!\n')
         data = mid_life.get_all_values()
         list_headers = data[0]
         list_numbers = data[-1]
@@ -99,8 +99,8 @@ def connect_training():
 
         users_age_group = 'elder'
         elder = SHEET.worksheet('elder')
-        print('You are in the elder program.')
-        print('This is your training for today! Do them all four times!')
+        print('\nYou are in the elder program.')
+        print('This is your training for today! Do them all four times!\n')
         data = elder.get_all_values()
         list_headers = data[0]
         list_numbers = data[-1]
@@ -109,14 +109,19 @@ def connect_training():
     else:
         users_age_group = 'senior'
         senior = SHEET.worksheet('senior')
-        print('You are in the senior program.')
-        print('This is your training for today! Do them all four times!')
+        print('\nYou are in the senior program.')
+        print('This is your training for today! Do them all four times!\n')
         data = senior.get_all_values()
         list_headers = data[0]
         list_numbers = data[-1]
         read_sheet(list_headers, list_numbers)
 
+
 def validate_result():
+
+    """
+    Use a while loop to ask user to answer yes or no.
+    """
 
     while True:
         global data_str
@@ -126,7 +131,7 @@ def validate_result():
         
             converted_ans = data_str.lower()
             if converted_ans == "yes":
-                print(f'You answered {converted_ans}')
+                print(f"You answered {converted_ans}\n")
                 print('Your workout will be tougher tomorrow\n')
                 update_worksheet()
 
@@ -142,12 +147,13 @@ def validate_result():
         else:
             break
 
+
 def get_result():
     """
     Ask user if the workout was easy to know if for tomorrow
      it will be increased by 10% or not.
     """
-    print("\n Was todays workout easy? If so answer Yes")
+    print("\nWas todays workout easy? If so answer Yes\n")
     validate_result()
 
 
@@ -158,6 +164,10 @@ def update_worksheet():
     sheet = SHEET.worksheet(users_age_group)
     data = sheet.get_all_values()[-1]
 
+    """
+    Make list into nums to add on 10%.
+    Put them back into a list and add to spreadsheet.
+    """
     new_values = []
 
     for x in data:
@@ -168,6 +178,10 @@ def update_worksheet():
     sheet.append_row(new_values)
     print(new_values)
 
+
+"""
+Calling out functions
+"""
 
 start_game()
 get_age()
