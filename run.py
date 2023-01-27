@@ -1,5 +1,6 @@
 import gspread
 from google.oauth2.service_account import Credentials
+import math
 
 SCOPE = [
     "https://www.googleapis.com/auth/spreadsheets",
@@ -35,6 +36,13 @@ def validate_age():
       except ValueError:
         print("That's not a age in numbers!")
 
+def read_sheet(list_headers , list_numbers):
+    i = 0
+    while i < len(list_headers)-1:
+        print(str(list_headers[i]) + ": " + str(list_numbers[i]))
+        i = i+1
+
+
 def connect_training():
     """
     A function to connect user age to the right training program
@@ -46,21 +54,30 @@ def connect_training():
         teenager = SHEET.worksheet('teenager')
         print('You are in the teenager program')
         data = teenager.get_all_values()
-        print(data)
+        list_headers = data[0]
+        list_numbers = data[-1]
+        read_sheet(list_headers, list_numbers)
+        
+
+
 
     elif parsed_age <= 35: 
         users_age_group = 'adult'
         adult = SHEET.worksheet('adult')
         print('You are in the adult program')
         data = adult.get_all_values()
-        print(data)
+        list_headers = data[0]
+        list_numbers = data[-1]
+        read_sheet(list_headers, list_numbers)
 
     elif parsed_age <= 50:
         users_age_group = 'mid_life'
         mid_life = SHEET.worksheet('mid_life')
         print('You are in the mid_life program')
         data = mid_life.get_all_values()
-        print(data)
+        list_headers = data[0]
+        list_numbers = data[-1]
+        read_sheet(list_headers, list_numbers)
 
     elif parsed_age <= 70:
         
@@ -68,14 +85,18 @@ def connect_training():
         elder = SHEET.worksheet('elder')
         print('You are in the elder program')
         data = elder.get_all_values()
-        print(data)
+        list_headers = data[0]
+        list_numbers = data[-1]
+        read_sheet(list_headers, list_numbers)
 
     else:
         users_age_group = 'senior'
         senior = SHEET.worksheet('senior')
         print('You are in the senior program')
         data = senior.get_all_values()
-        print(data)
+        list_headers = data[0]
+        list_numbers = data[-1]
+        read_sheet(list_headers, list_numbers)
 
 def get_result():
     """
@@ -88,6 +109,7 @@ def get_result():
     converted_ans = data_str.lower()
     if converted_ans == "yes":
         print(f'Since you answered {converted_ans}, workout will be tougher tomorrow')
+        update_worksheet()
        
     
     else:
@@ -106,13 +128,18 @@ def update_worksheet():
     data = sheet.get_all_values()[-1]
     print(data)
 
-    # data = ['15', '20', '12', '15', '12', '10']
-    # for x in data:
-    # print(x)
+    new_values = []
+
+    for x in data:
+        num = math.floor(int(x) * (1.1))
+
+        new_values.append(str(num)) 
+    print(new_values)
+    sheet.append_row(new_values)
+    
 
 
 get_age()
 validate_age()
 connect_training()
 get_result()
-update_worksheet()
