@@ -112,18 +112,21 @@ def connect_training():
 
 def get_result():
     """
-    Ask user if the workout was easy to know if for tomorrow it will be increased by 10% or not.
+    Ask user if the workout was easy to know if for tomorrow
+     it will be increased by 10% or not.
     """
     print("Was todays workout easy? If so answer Yes")
 
     data_str = input("Enter your data here: ")
     converted_ans = data_str.lower()
     if converted_ans == "yes":
-        print(f'Since you answered {converted_ans}, workout will be tougher tomorrow')
+        print(f'You answered {converted_ans}')
+        print('Your workout will be tougher tomorrow\n')
         update_worksheet()
 
     else:
-        print(f'Since you answered {converted_ans}, the workout for tomorrow will be the same')
+        print(f'You answered {converted_ans}\n')
+        print('Your workout for tomorrow will be the same')
 
 
 def update_worksheet():
@@ -138,7 +141,7 @@ def update_worksheet():
     for x in data:
         num = math.floor(int(x) * (1.1))
 
-        new_values.append(str(num)) 
+        new_values.append(str(num))
 
     sheet.append_row(new_values)
 
