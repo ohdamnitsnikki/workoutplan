@@ -16,29 +16,34 @@ SHEET = GSPREAD_CLIENT.open('workout_plan')
 user_age = 0
 users_age_group = None
 
+
 def get_age():
     """
     Get age from user to give them the right training.
     """
     print("Please enter your age in numbers.")
 
+
 def validate_age():
     """
-    Inside the try, convert user answer to integers. Create ValueError if age isn't written in numbers.
+    Inside the try, convert user answer to integers.
+    Create ValueError if age isn't written in numbers.
     """
 
     while True:
-      global user_age
-      user_age = input("\nYour answer: ")
-      try:
-        val = float(user_age)
-        break
-      except ValueError:
-        print("That's not a age in numbers!")
+        global user_age
+        user_age = input("Your answer: \n")
+        try:
+            float(user_age)
+            break
+        except ValueError:
+            print("That's not a age in numbers!")
 
-def read_sheet(list_headers , list_numbers):
+
+def read_sheet(list_headers, list_numbers):
     """
-    Use a while loop to read out each exercise and then how many times it should been done instead of first reading the headers and then the last row.
+    Use a while loop to read out each exercise,
+    then how many times it should been done.
     """
 
     i = 0
@@ -56,17 +61,18 @@ def connect_training():
     if parsed_age <= 20:
         users_age_group = 'teenager'
         teenager = SHEET.worksheet('teenager')
-        print('You are in the teenager program')
+        print('You are in the teenager program.')
+        print('This is your training for today! Do them all four times!')
         data = teenager.get_all_values()
         list_headers = data[0]
         list_numbers = data[-1]
         read_sheet(list_headers, list_numbers)
-        
 
-    elif parsed_age <= 35: 
+    elif parsed_age <= 35:
         users_age_group = 'adult'
         adult = SHEET.worksheet('adult')
-        print('You are in the adult program')
+        print('You are in the adult program.')
+        print('This is your training for today! Do them all four times!')
         data = adult.get_all_values()
         list_headers = data[0]
         list_numbers = data[-1]
@@ -75,17 +81,19 @@ def connect_training():
     elif parsed_age <= 50:
         users_age_group = 'mid_life'
         mid_life = SHEET.worksheet('mid_life')
-        print('You are in the mid_life program')
+        print('You are in the mid_life program.')
+        print('This is your training for today! Do them all four times!')
         data = mid_life.get_all_values()
         list_headers = data[0]
         list_numbers = data[-1]
         read_sheet(list_headers, list_numbers)
 
     elif parsed_age <= 70:
-        
+
         users_age_group = 'elder'
         elder = SHEET.worksheet('elder')
-        print('You are in the elder program')
+        print('You are in the elder program.')
+        print('This is your training for today! Do them all four times!')
         data = elder.get_all_values()
         list_headers = data[0]
         list_numbers = data[-1]
@@ -94,41 +102,36 @@ def connect_training():
     else:
         users_age_group = 'senior'
         senior = SHEET.worksheet('senior')
-        print('You are in the senior program')
+        print('You are in the senior program.')
+        print('This is your training for today! Do them all four times!')
         data = senior.get_all_values()
         list_headers = data[0]
         list_numbers = data[-1]
         read_sheet(list_headers, list_numbers)
+
 
 def get_result():
     """
     Ask user if the workout was easy to know if for tomorrow it will be increased by 10% or not.
     """
     print("Was todays workout easy? If so answer Yes")
-   
 
     data_str = input("Enter your data here: ")
     converted_ans = data_str.lower()
     if converted_ans == "yes":
         print(f'Since you answered {converted_ans}, workout will be tougher tomorrow')
         update_worksheet()
-       
-    
+
     else:
         print(f'Since you answered {converted_ans}, the workout for tomorrow will be the same')
-
 
 
 def update_worksheet():
     """
     Update tomorrows training program to worksheet if it was easy for the user.
     """
-
-    print(users_age_group)
-        
     sheet = SHEET.worksheet(users_age_group)
     data = sheet.get_all_values()[-1]
-    print(data)
 
     new_values = []
 
@@ -136,9 +139,8 @@ def update_worksheet():
         num = math.floor(int(x) * (1.1))
 
         new_values.append(str(num)) 
-    print(new_values)
+
     sheet.append_row(new_values)
-    
 
 
 get_age()
