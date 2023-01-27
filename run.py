@@ -176,6 +176,7 @@ def update_worksheet():
         new_values.append(str(num))
 
     sheet.append_row(new_values)
+    print('\nThis is your exercises for tomorrow\n')
     print(new_values)
 
 

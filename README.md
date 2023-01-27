@@ -75,7 +75,8 @@ Refresh teh page and a link to the final project is deployed.
 
 ## Creating a app on Heroku
 
-(This next part isn't described by me)
+(This explanation of deploying is described by AJ Greaves
+)
 This app is deployed on Heroku.
 
 When you create the app, you will need to add two buildpacks from the _Settings_ tab. The ordering is as follows:
